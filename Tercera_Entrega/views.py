@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from Tercera_Entrega.models import Empleados, AreaEmpresa, Sucursal
 from django.urls import reverse_lazy
+from Tercera_Entrega.forms import BuscarEmpleadosForm
 
 def index(request):
     return render(request,"Tercera_Entrega/index.html")
@@ -37,5 +38,5 @@ class BuscarEmpleados(ListView):
     def get_query(self):
         f = BuscarEmpleadosForm(self.request.GET)
         if f.is_valid():
-            return empleados.objects.filter(nombre__icontains=f.data["criterio_Nombre"]).all()
+            return empleados.objects.filter(nombre__icontains=f.data["criterio_nombre"]).all()
         return Empleados.objects.none()
