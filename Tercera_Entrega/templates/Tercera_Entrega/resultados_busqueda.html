@@ -1,0 +1,14 @@
+{% extends 'Tercera_Entrega/base.html' %}
+
+{% block main %}
+  <h1>Resultados de búsqueda</h1>
+  {% if resultados %}
+    <ul>
+      {% for sucursal in resultados %}
+        <li>{{sucursal.Ciudad}} - {{sucursal.Numero_Sucursal}}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se encontraron resultados</p>
+  {% endif %}
+{% endblock %}
