@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from Tercera_Entrega.models import Empleados, AreaEmpresa, Sucursal
 from django.urls import reverse_lazy
-from Tercera_Entrega.forms import BuscarEmpleadosForm
+from Tercera_Entrega.forms import BuscarSucursalesForm
 
 def index(request):
     return render(request,"Tercera_Entrega/index.html")
@@ -31,12 +31,17 @@ class SucursalCreate(CreateView):
     success_url = reverse_lazy("sucursal-create")
     fields = '__all__'
 
-class BuscarEmpleados(ListView):
-    model = Empleados
-    context_object_name = 'empleados'
-
+class BuscarSucursal(ListView):
+    model = Sucursal
+    context_object_name = 'sucursal'
+ 
     def get_query(self):
-        f = BuscarEmpleadosForm(self.request.GET)
+        f = BuscarSucursalesForm(self.request.GET)
         if f.is_valid():
-            return empleados.objects.filter(nombre__icontains=f.data["criterio_nombre"]).all()
-        return Empleados.objects.none()
+            return sucursal.objects.filter(ciudad__icontains=f.data["criterio_ciudad"]).all()
+        return Sucursales.objects.none()
+
+    
+    
+
+   
