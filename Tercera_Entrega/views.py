@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from Tercera_Entrega.models import Empleados, AreaEmpresa, Sucursal
 from django.urls import reverse_lazy
-from Tercera_Entrega.forms import BuscarSucursalesForm
+from Tercera_Entrega.forms import BuscarSucursalForm
 
 def index(request):
     return render(request,"Tercera_Entrega/index.html")
@@ -36,7 +36,7 @@ class BuscarSucursal(ListView):
     context_object_name = 'sucursal'
  
     def get_query(self):
-        f = BuscarSucursalesForm(self.request.GET)
+        f = BuscarSucursalForm(self.request.GET)
         if f.is_valid():
             return sucursal.objects.filter(ciudad__icontains=f.data["criterio_ciudad"]).all()
         return Sucursales.objects.none()

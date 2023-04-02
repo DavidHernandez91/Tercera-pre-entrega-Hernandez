@@ -5,5 +5,5 @@ class SucursalForm(forms.Form):
    
 
 
-class BuscarSucursalesForm(forms.Form):
-    criterio__Ciudad = forms.CharField(max_length=30)
+class BuscarSucursalForm(forms.Form):
+    criterio__ciudad = forms.CharField(max_length=30)
